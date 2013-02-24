@@ -11,6 +11,13 @@ body { }
    ========================================================================== */
 
 .banner { }
+ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+	margin-top: 0;
+}
+.page-header, .lead {
+	color: #5a5a5a;
+}
 
 
 
@@ -26,7 +33,9 @@ body { }
    Primary Content
    ========================================================================== */
 
-.main { }
+.main {
+	margin-top: 2em;
+}
 
 
 
@@ -34,7 +43,9 @@ body { }
    Sidebar
    ========================================================================== */
 
-.sidebar { }
+.sidebar {
+	margin-top: 2em;
+}
 
 
 
@@ -47,14 +58,22 @@ body { }
 .hentry .byline { }
 .hentry .entry-content { }
 .hentry footer { }
-
+.hentry .entry-meta {
+	margin: 0 0 1em;
+}
 
 
 /* ==========================================================================
    Footer
    ========================================================================== */
 
-.content-info { }
+.content-info {
+	text-align: center;
+	padding: 30px 0;
+	margin-top: 70px;
+	border-top: 1px solid #e5e5e5;
+	background-color: #f5f5f5;
+}
 
 
 
