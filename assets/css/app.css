@@ -53,13 +53,26 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
    Posts
    ========================================================================== */
 
+.hentry {
+	position: relative;
+}
 .hentry header { }
+.blog .hentry .entry-title,
+.archive .hentry .entry-title {
+	font-size: 2em;
+}
 .hentry time { }
 .hentry .byline { }
 .hentry .entry-content { }
 .hentry footer { }
 .hentry .entry-meta {
 	margin: 0 0 1em;
+}
+.hentry .entry-meta a {
+	color: #A5A5A5;
+}
+.hentry .entry-meta a:hover {
+	color: #A5A5A5;
 }
 
 
