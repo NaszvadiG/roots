@@ -6,8 +6,8 @@
 	    <div class="entry-content">
 			<?php the_content(); ?>
 	    </div>
-	    <footer class="entry-meta clearfix">
-			<?php wp_link_pages(array('before' => '<nav class="page-nav"><p>' . __('Pages:', 'roots'), 'after' => '</p></nav>')); ?>
+	    <footer class="clearfix">
+			<?php bootstrap_link_pages(); ?>
 			<?php get_template_part('templates/entry-meta'); ?>
 	    </footer>
 		<?php comments_template('/templates/comments.php'); ?>

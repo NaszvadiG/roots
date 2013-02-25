@@ -10,7 +10,9 @@
 	</span><!-- .comments-link -->
 	<?php endif; // comments_open() ?>
 	<?php edit_post_link( __( 'Edit', 'roots' ), '<span class="edit-link"><i class="icon-pencil"></i> ', '</span>' ); ?><br />
+	<?php if (has_category()): ?>
 	<i class="icon-folder-open" title="<?php echo __('Posted in', 'roots'); ?>"></i>
 	<?php echo get_the_category_list( __( ', ', 'roots' ) ); ?> 
+	<?php endif; ?>
 	<?php the_tags('<i class="icon-tags" title="' . __('Tags', 'roots') . '"></i> ', ', ', ''); ?>
 </div>

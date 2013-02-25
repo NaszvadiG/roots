@@ -46,6 +46,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 .sidebar {
 	margin-top: 2em;
 }
+.sidebar .widget h3 {
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
 
 
 
@@ -64,7 +68,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 .hentry time { }
 .hentry .byline { }
 .hentry .entry-content { }
-.hentry footer { }
+.hentry footer {
+	clear: both;
+	margin-top: 1em;
+}
 .hentry .entry-meta {
 	margin: 0 0 1em;
 }
