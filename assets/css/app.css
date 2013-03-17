@@ -82,6 +82,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 	color: #A5A5A5;
 }
 
+#respond form textarea {
+	width: 100%;
+}
+
 
 /* ==========================================================================
    Footer
