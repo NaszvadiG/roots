@@ -349,7 +349,7 @@ class Beam_Bootstrap
 		add_shortcode('dl', array( $this, 'bs_dl' ));
 		add_shortcode('dt', array( $this, 'bs_dt' ));
 		add_shortcode('dd', array( $this, 'bs_dd' ));
-		add_shortcode('button', array( $this, 'bs_button' ));  
+//		add_shortcode('button', array( $this, 'bs_button' ));  
 		add_shortcode('dropdown', array( $this, 'bs_dropdown' ));
 		add_shortcode('hr', array( $this, 'bs_hr' ));
 		add_shortcode('buttongroup', array( $this, 'bs_buttongroup' ));
@@ -373,7 +373,33 @@ class Beam_Bootstrap
 	}
 	
 	/**
+	 * Get standard attributes for elements (id, class & style).
+	 * 
+	 * @param string $el_class
+	 * @param array $atts
+	 * @return string
+	 */
+	private function get_atts( $el_class, $atts )
+	{
+		extract(shortcode_atts(array(
+			'id'	=> '',
+			'class' => '',
+			'style' => ''
+		), $atts));
+		
+		if (!empty($id)) $id = 'id="' . $id . '" ';
+		if (!empty($style)) $style = ' style="' . $style . '"';
+		return $id . 'class="' . $el_class . ' ' . $class . '"' . $style;
+	}
+	
+	/**
 	 * Grid row fluid.
+	 * 
+	 * $atts params:
+	 * fluid: make row fluid (true/false)
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -381,7 +407,16 @@ class Beam_Bootstrap
 	 */
 	function bs_row( $atts, $content = null )
 	{
-		return '<div class="row-fluid">' . do_shortcode( $content ) . '</div>';
+		extract(shortcode_atts(array(
+			'fluid' => FALSE
+		), $atts));
+
+		$el_class = 'row';
+		if ($fluid) {
+			$el_class .= '-fluid';
+		}
+		
+		return '<div ' . $this->get_atts($el_class, $atts) . '>' . do_shortcode( $content ) . '</div>';
 	}
 	
 	/**
@@ -390,6 +425,9 @@ class Beam_Bootstrap
 	 * $atts params:
 	 * size: span size (1..12)
 	 * offset: span offset size (1..11)
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -402,11 +440,11 @@ class Beam_Bootstrap
 			'offset' => ''
 		), $atts));
 
-		$class = 'span' . $size;
+		$el_class = 'span' . $size;
 		if (!empty($offset))
-			$class .= ' offset' . $offset;
+			$el_class .= ' offset' . $offset;
 		
-		return '<div class="' . $class . '">' . do_shortcode($content) . '</div>';
+		return '<div ' . $this->get_atts($el_class, $atts) . '>' . do_shortcode($content) . '</div>';
 	}
 	
 	/**
@@ -414,7 +452,10 @@ class Beam_Bootstrap
 	 * 
 	 * $atts params:
 	 * title: title attribute.
-	 * initialism: Add .initialism to an abbreviation for a slightly smaller font-size.
+	 * initialism: Add .initialism to an abbreviation for a slightly smaller font-size (true/false).
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 *  
 	 * @param array $atts
 	 * @param string $content
@@ -424,14 +465,14 @@ class Beam_Bootstrap
 	{
 		extract(shortcode_atts(array(
 			'title' => '',
-			'initialism' => ''
+			'initialism' => FALSE
 		), $atts));
 		
-		$class = '';
-		if (!empty($initialism))
-			$class = 'class="initialism"';
+		$el_class = '';
+		if ($initialism)
+			$el_class = 'initialism';
 
-		return '<abbr title="' . $title . '" ' . $class . '>' . do_shortcode($content) . '</abbr>';
+		return '<abbr title="' . $title . '" ' . $this->get_atts($el_class, $atts) . '>' . do_shortcode($content) . '</abbr>';
 	}
 	
 	/**
@@ -439,6 +480,9 @@ class Beam_Bootstrap
 	 * 
 	 * $atts params:
 	 * title: title attribute.
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -450,14 +494,17 @@ class Beam_Bootstrap
 			'title' => '',
 		), $atts));
 		
-		return '<cite title="' . $title . '">' . do_shortcode($content) . '</cite>';
+		return '<cite title="' . $title . '" ' . $this->get_atts('', $atts) . '>' . do_shortcode($content) . '</cite>';
 	}
 	
 	/**
 	 * Add a list of terms with their associated descriptions with <dl>.
 	 * 
 	 * $atts params:
-	 * dl_horizontal: Make terms and descriptions in <dl> line up side-by-side.
+	 * dl_horizontal: Make terms and descriptions in <dl> line up side-by-side (true/false).
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -466,18 +513,23 @@ class Beam_Bootstrap
 	function bs_dl( $atts, $content = null )
 	{
 		extract(shortcode_atts(array(
-			'dl_horizontal' => '',
+			'dl_horizontal' => FALSE,
 		), $atts));
 		
-		$class = '';
-		if (!empty($dl_horizontal))
-			$class = 'class="dl-horizontal"';
+		$el_class = '';
+		if ($dl_horizontal)
+			$el_class = 'dl-horizontal';
 		
-		return '<dl ' . $class . '>' . do_shortcode( $content ) . '</dl>';
+		return '<dl ' . $this->get_atts($el_class, $atts) . '>' . do_shortcode( $content ) . '</dl>';
 	}
 	
 	/**
 	 * Add terms with <dt>.
+	 * 
+	 * $atts params:
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -485,11 +537,16 @@ class Beam_Bootstrap
 	 */
 	function bs_dt( $atts, $content = null )
 	{
-		return '<dt>' . do_shortcode( $content ) . '</dt>';
+		return '<dt ' . $this->get_atts('', $atts) . '>' . do_shortcode( $content ) . '</dt>';
 	}
 	
 	/**
 	 * Add term's description with <dd>.
+	 * 
+	 * $atts params:
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -497,16 +554,18 @@ class Beam_Bootstrap
 	 */
 	function bs_dd( $atts, $content = null )
 	{
-		return '<dd>' . do_shortcode( $content ) . '</dd>';
-	}
-	
-	function bs_button( $atts, $content = null )
-	{
-		
+		return '<dd ' . $this->get_atts('', $atts) . '>' . do_shortcode( $content ) . '</dd>';
 	}
 	
 	/**
 	 * Add dropdown menu.
+	 * 
+	 * $atts params:
+	 * display: make dropdown menu visible by default (true/false).
+	 * dropup: make a menu dropup (true/false).
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -514,37 +573,49 @@ class Beam_Bootstrap
 	 */
 	function bs_dropdown( $atts, $content = null ) {
 		extract(shortcode_atts(array(
-			'display' => '',
-			'dropup' => ''
+			'display' => FALSE,
+			'dropup' => FALSE
 		), $atts));
 		
 		$dom = new DOMDocument;
 		$dom->loadHTML($content);
 		$content = $this->create_dropdown($dom, $atts);
 		
-		$class = '';
-		if (!empty($dropup)) {
-			$class = 'dropup';
+		$el_class = '';
+		if ($dropup) {
+			$el_class = 'dropup';
 		} else {
-			$class = 'dropdown';
+			$el_class = 'dropdown';
 		}
-		if (!empty($display)) {
-			$class .= ' clearfix';
+		if ($display) {
+			$el_class .= ' clearfix';
 		}
-		return '<div class="' . $class . '">' . do_shortcode( $content ) . '</div>';
+		return '<div ' . $this->get_atts($el_class, $atts) . '>' . do_shortcode( $content ) . '</div>';
 	}
 	
 	/**
 	 * Display hr.
 	 * 
+	 * $atts params:
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
+	 * 
 	 * @return string
 	 */
-	function bs_hr() {
-		return '<hr />';
+	function bs_hr( $atts ) {
+		return '<hr ' . $this->get_atts('', $atts) . '/>';
 	}
 	
 	/**
 	 * Create button groups.
+	 * 
+	 * $atts params:
+	 * vertical: make a vertical button groups (true/false)
+	 * dropup: make a button groups dropup (true/false)
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -552,37 +623,42 @@ class Beam_Bootstrap
 	 */
 	function bs_buttongroup( $atts, $content = null ) {
 		extract(shortcode_atts(array(
-			'vertical' => '',
-			'dropup' => ''
+			'vertical' => FALSE,
+			'dropup' => FALSE
 		), $atts));
 		
 		$dom = new DOMDocument;
 		$dom->loadHTML($content);
 		$xpath = new DOMXPath($dom);
-		$class = 'btn-group';
+		$el_class = 'btn-group';
 		
 		if ( $xpath->query('//ul')->length > 0) {
 			$content = do_shortcode( $this->create_dropdown($dom, $atts) );
-			if (!empty($dropup)) {
-				$class .= ' dropup';
+			if ($dropup) {
+				$el_class .= ' dropup';
 			}
 		} else {
-			if (!empty($vertical)) {
-				$class .= ' btn-group-vertical';
+			if ($vertical) {
+				$el_class .= ' btn-group-vertical';
 			}
 		}
-		return '<div class="' . $class . '">' . do_shortcode($content) . '</div>';
+		return '<div ' . $this->get_atts($el_class, $atts) . '>' . do_shortcode($content) . '</div>';
 	}
 	
 	/**
 	 * Create button toolbar.
+	 * 
+	 * $atts params:
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
 	 * @return string
 	 */
 	function bs_buttontoolbar( $atts, $content = null ) {
-		return '<div class="btn-toolbar">' . do_shortcode($content) . '</div>';
+		return '<div ' . $this->get_atts('btn-toolbar', $atts) . '>' . do_shortcode($content) . '</div>';
 	}
 	
 	/**
@@ -592,7 +668,7 @@ class Beam_Bootstrap
 	 * @param string $display
 	 * @return string
 	 */
-	function create_dropdown( $dom, $atts ) {
+	private function create_dropdown( $dom, $atts ) {
 		extract(shortcode_atts(array(
 			'display' => '',
 			'split' => '',
@@ -671,7 +747,7 @@ class Beam_Bootstrap
 	 * @param DOMNode $node
 	 * @param string $class
 	 */
-	function add_class($node, $class) {
+	private function add_class($node, $class) {
 		$curr_class = '';
 		if ($node->hasAttribute('class')) {
 			$curr_class = $node->getAttribute('class') . ' ';
@@ -686,7 +762,7 @@ class Beam_Bootstrap
 	 * @param DOMDocument $dom
 	 * @param string $name
 	 */
-	function remove_nodes($dom, $name) {
+	private function remove_nodes($dom, $name) {
 		$xpath = new DOMXPath($dom);
 		$deletenodes = array();
 		foreach ($xpath->query('//' . $name . '[not(node())]') as $node) {
@@ -700,6 +776,14 @@ class Beam_Bootstrap
 	/**
 	 * Display alert.
 	 * 
+	 * $atts params:
+	 * type: alert type (error/success/info)
+	 * block: increase the padding on the top and bottom of the alert wrapper (true/false)
+	 * close: add close button (true/false)
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
+	 * 
 	 * @param array $atts
 	 * @param string $content
 	 * @return string
@@ -707,18 +791,18 @@ class Beam_Bootstrap
 	function bs_alert( $atts, $content = null ) {
 		extract(shortcode_atts(array(
 			'type'	=> '',
-			'block'	=> 'false',
-			'close'	=> 'true'
+			'block'	=> FALSE,
+			'close'	=> FALSE
 		), $atts));
 		
-		$class = 'alert';
+		$el_class = 'alert';
 		if (!empty($type))
-			$class .= ' alert-' . $type;
-		if ($block == 'true')
-			$class .= ' alert-block';
+			$el_class .= ' alert-' . $type;
+		if ($block)
+			$el_class .= ' alert-block';
 		
-		$output = '<div class="' . $class . '">';
-		if ($close == 'true')
+		$output = '<div ' . $this->get_atts($el_class, $atts) . '>';
+		if ($close)
 			$output .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';
 		$output .= trim(do_shortcode($content));
 		$output .= '</div>';
@@ -728,38 +812,68 @@ class Beam_Bootstrap
 	/**
 	 * Apply well to elements.
 	 * 
+	 * $atts params:
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
+	 * 
 	 * @param array $atts
 	 * @param string $content
 	 * @return string
 	 */
 	function bs_well( $atts, $content = '' ) {
-		return '<div class="well">' . do_shortcode($content) . '</div>';
+		return '<div ' . $this->get_atts('well', $atts) . '>' . do_shortcode($content) . '</div>';
 	}
 	
 	/**
 	 * Apply hero unit to elements.
+	 * 
+	 * $atts params:
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
 	 * @return string
 	 */
 	function bs_herounit( $atts, $content = '' ) {
-		return '<div class="hero-unit">' . do_shortcode($content) . '</div>';
+		return '<div ' . $this->get_atts('hero-unit', $atts) . '>' . do_shortcode($content) . '</div>';
 	}
 	
 	/**
 	 * Apply thumbnails to elements.
+	 * 
+	 * $atts params:
+	 * fluid: make thumbnails row fluid (true/false)
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
 	 * @return string
 	 */
 	function bs_thumbnails( $atts, $content = '' ) {
-		return '<div class="row-fluid"><ul class="thumbnails">' . do_shortcode($content) . '</ul></div>';
+		extract(shortcode_atts(array(
+			'fluid' => FALSE
+		), $atts));
+		
+		$class = 'row';
+		if ($fluid) $class .= '-fluid';
+		
+		return '<div class="' . $class . '"><ul ' . $this->get_atts('thumbnails', $atts) . '>' . do_shortcode($content) . '</ul></div>';
 	}
 	
 	/**
 	 * Apply thumbnail to elements.
+	 * 
+	 * $atts params:
+	 * span: use existing grid system to control thumbnail dimensions (1..12)
+	 * strip: strip new line characters (true/false)
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -768,20 +882,27 @@ class Beam_Bootstrap
 	function bs_thumbnail( $atts, $content = '' ) {
 		extract(shortcode_atts(array(
 			'span'	=> '',
-			'strip'	=> '',
+			'strip'	=> FALSE,
 		), $atts));
-		$class = '';
+		
+		$el_class = '';
 		if (!empty($span)) {
-			$class .= ' class="span' . $span . '"';
+			$el_class .= 'span' . $span;
 		}
-		if (!empty($strip)) {
+		if ($strip) {
 			$content = str_replace("\r\n", "", $content);
 		}
-		return '<li' . $class . '><div class="thumbnail">' . do_shortcode(trim($content)) . '</div></li>';
+		return '<li ' . $this->get_atts($el_class, $atts) . '><div class="thumbnail">' . do_shortcode(trim($content)) . '</div></li>';
 	}
 	
 	/**
 	 * Display tabs
+	 * 
+	 * $atts params:
+	 * position: position of tabs (top/left/right/below)
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -814,19 +935,26 @@ class Beam_Bootstrap
 		}
 		$tabs = '<ul class="nav nav-tabs">' . $tabs . '</ul>';
 		
-		$class = 'tabbable';
+		$el_class = 'tabbable';
 		if (!empty($position)) {
 			$position = strtolower($position);
-			$class .= ' tabs-' . $position;
+			$el_class .= ' tabs-' . $position;
 		}
 		if ($position == 'below')
-			return '<div class="' . $class . '">' . $content . $tabs . '</div>';
+			return '<div ' . $this->get_atts($el_class, $atts) . '">' . $content . $tabs . '</div>';
 		else
-			return '<div class="' . $class . '">' . $tabs . $content . '</div>';
+			return '<div ' . $this->get_atts($el_class, $atts) . '">' . $tabs . $content . '</div>';
 	}
 	
 	/**
 	 * Apply tab to elements.
+	 * 
+	 * $atts params:
+	 * title: tab's title
+	 * active: set as active tab (true/false)
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -835,18 +963,18 @@ class Beam_Bootstrap
 	function bs_tab( $atts, $content = '' ) {
 		extract(shortcode_atts(array(
 			'title'		=> 'Tab',
-			'active'	=> 'false'
+			'active'	=> FALSE
 		), $atts));
 		$slug = 'tab-' . $GLOBALS['tab-id'] . '-' . sanitize_title( $title );
 		$GLOBALS['tabs'][$slug] = $title;
 		
-		$class = 'tab-pane';
+		$el_class = 'tab-pane';
 		if (strtoupper($active) == 'TRUE') {
 			$GLOBALS['tab-active'] = $slug;
-			$class .= ' active';
+			$el_class .= ' active';
 		}
 		
-		return '<div id="' . $slug . '" class="' . $class . '">' . do_shortcode($content) . '</div>';
+		return '<div id="' . $slug . '" ' . $this->get_atts($el_class, $atts) . '>' . do_shortcode($content) . '</div>';
 	}
 	
 	/**
@@ -854,6 +982,9 @@ class Beam_Bootstrap
 	 * 
 	 * $atts params:
 	 * type: Icon type.
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @return string
@@ -864,7 +995,7 @@ class Beam_Bootstrap
 			'type' => '',
 		), $atts));
 		
-		return '<i class="icon icon-' . $type . '"></i>';
+		return '<i ' . $this->get_atts('icon icon-' . $type, $atts) . '></i>';
 	}
 	
 	/**
@@ -872,6 +1003,9 @@ class Beam_Bootstrap
 	 * 
 	 * $atts params:
 	 * type: Icon type.
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @return string
@@ -881,11 +1015,17 @@ class Beam_Bootstrap
 			'type' => '',
 		), $atts));
 		
-		return '<i class="icon icon-' . $type . ' icon-white"></i>';
+		return '<i ' . $this->get_atts('icon icon-' . $type . ' icon-white', $atts) . '></i>';
 	}
 	
 	/**
 	 * Display labels.
+	 * 
+	 * $atts params:
+	 * type: label type (success/warning/important/info/inverse)
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -896,11 +1036,17 @@ class Beam_Bootstrap
 			'type' => '',
 		), $atts));
 		
-		return '<span class="label label-' . $type . '">' . do_shortcode($content) . '</span>';
+		return '<span ' . $this->get_atts('label label-' . $type, $atts) . '>' . do_shortcode($content) . '</span>';
 	}
 	
 	/**
 	 * Display badges.
+	 * 
+	 * $atts params:
+	 * type: badge type (success/warning/important/info/inverse)
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @param array $atts
 	 * @param string $content
@@ -911,11 +1057,20 @@ class Beam_Bootstrap
 			'type' => '',
 		), $atts));
 		
-		return '<span class="badge badge-' . $type . '">' . do_shortcode($content) . '</span>';
+		return '<span ' . $this->get_atts('badge badge-' . $type, $atts) . '>' . do_shortcode($content) . '</span>';
 	}
 	
 	/**
 	 * Add image placeholder with holder.js
+	 * 
+	 * $atts params:
+	 * dimension: image placeholder dimension (default: 200x300)
+	 * theme: set placeholder theme (gray/industrial/social)
+	 * colors: set placeholder color (default: #E5E5E5:#EEEEEE)
+	 * text: set placeholder text (default: '')
+	 * id: element's id
+	 * class: additional classes to apply
+	 * style: some styles to apply to the element
 	 * 
 	 * @link https://github.com/imsky/holder 
 	 * @param array $atts
@@ -927,8 +1082,7 @@ class Beam_Bootstrap
 			'dimension' => '200x300',
 			'theme' => '',
 			'colors' => '',
-			'text' => '',
-			'class' => ''
+			'text' => ''
 		), $atts));
 		
 		$attributes = 'data-src="holder.js/' . $dimension;
@@ -937,9 +1091,7 @@ class Beam_Bootstrap
 		if (!empty($text)) $attributes .= '/text:' . $text;
 		$attributes .= '"';
 		
-		if (!empty($class)) $attributes .= ' class="' . $class . '"';
-		
-		return '<img ' . $attributes . '>';
+		return '<img ' . $attributes . ' ' . $this->get_atts('', $atts) . '>';
 	}
 }
 
