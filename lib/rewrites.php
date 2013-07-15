@@ -8,6 +8,7 @@
  *   /wp-content/themes/themename/assets/css/ to /assets/css/
  *   /wp-content/themes/themename/assets/js/  to /assets/js/
  *   /wp-content/themes/themename/assets/img/ to /assets/img/
+ *	 /wp-content/themes/themename/assets/font/ to /assets/font/
  *   /wp-content/plugins/                     to /plugins/
  *
  * If you aren't using Apache, alternate configuration settings can be found in the docs.
@@ -20,6 +21,7 @@ function roots_add_rewrites($content) {
     'assets/css/(.*)'      => THEME_PATH . '/assets/css/$1',
     'assets/js/(.*)'       => THEME_PATH . '/assets/js/$1',
     'assets/img/(.*)'      => THEME_PATH . '/assets/img/$1',
+	'assets/font/(.*)'	   => THEME_PATH . '/assets/font/$1',
     'plugins/(.*)'         => RELATIVE_PLUGIN_PATH . '/$1'
   );
   $wp_rewrite->non_wp_rules = array_merge($wp_rewrite->non_wp_rules, $roots_new_non_wp_rules);
