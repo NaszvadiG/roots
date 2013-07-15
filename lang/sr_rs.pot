@@ -2,165 +2,167 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: Roots Theme\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: Roy Duineveld <roy@duineveld.me>\n"
-"Language-Team: Roy Duineveld <roy@duineveld.me>\n"
+"Last-Translator: lautreamont <lautreamont33@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "X-Generator: Poedit 1.5.5\n"
-"Language: Dutch\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
 #: 404.php:4
 msgid "Sorry, but the page you were trying to view does not exist."
-msgstr "Sorry, de pagina die je probeert te bezoeken bestaat niet."
+msgstr "Страна коју сте тражили непостоји."
 
 #: 404.php:7
 msgid "It looks like this was the result of either:"
-msgstr "Het lijkt dat er een resultaat is of anders:"
+msgstr "Што је резултат:"
 
 #: 404.php:9
 msgid "a mistyped address"
-msgstr "een verkeerd adres"
+msgstr "или погрешно укуцане адресе"
 
 #: 404.php:10
 msgid "an out-of-date link"
-msgstr "een verouderde link"
+msgstr "или измењене/застареле везе"
 
 #: index.php:5
 msgid "Sorry, no results were found."
-msgstr "Sorry, geen resultaten gevonden."
+msgstr "Нема резултата претраге."
 
 #: index.php:17
 msgid "&larr; Older posts"
-msgstr "&larr; Oudere berichten"
+msgstr "&larr; Старији чланци"
 
 #: index.php:18
 msgid "Newer posts &rarr;"
-msgstr "Nieuwste berichten &rarr;"
+msgstr "Новији чланци &rarr;"
 
 #: lib/activation.php:33 lib/activation.php:34
 msgid "Theme Activation"
-msgstr "Thema Activeren"
+msgstr "Активирање теме"
 
 #: lib/activation.php:70
 msgid "%s Theme Activation"
-msgstr "%s Thema Activeren"
+msgstr "%s Активирање теме"
 
 #: lib/activation.php:85 lib/activation.php:87
 msgid "Create static front page?"
-msgstr "Statische voorpagina maken?"
+msgstr "Да направимо статичну насловну страну?"
 
 #: lib/activation.php:89 lib/activation.php:102 lib/activation.php:115
 #: lib/activation.php:128 lib/activation.php:141
 msgid "Yes"
-msgstr "Ja"
+msgstr "Да"
 
 #: lib/activation.php:90 lib/activation.php:103 lib/activation.php:116
 #: lib/activation.php:129 lib/activation.php:142
 msgid "No"
-msgstr "Nee"
+msgstr "Не"
 
 #: lib/activation.php:93
 msgid "Create a page called Home and set it to be the static front page"
-msgstr "Maak een \"home\" pagina en stel een statische voorpagina in"
+msgstr ""
+"Да креирамо страну под називом Home и поставимо је као статичну насловну "
+"страну"
 
 #: lib/activation.php:98
 msgid "Change permalink structure?"
-msgstr "Permalink structuur veranderen?"
+msgstr "Измени структуру сталних веза?"
 
 #: lib/activation.php:100
 msgid "Update permalink structure?"
-msgstr "Permalink structuur updaten?"
+msgstr "Запамти структуру сталних веза?"
 
 #: lib/activation.php:106
 msgid "Change permalink structure to /&#37;postname&#37;/"
-msgstr "Verander permalink structuur naar /&#37;postname&#37;/"
+msgstr "Измени структуру сталних веза у /&#37;називпоста&#37;/"
 
 #: lib/activation.php:111
 msgid "Change uploads folder?"
-msgstr "Upload map veranderen?"
+msgstr "Измени пријемни директоријум?"
 
 #: lib/activation.php:113
 msgid "Update uploads folder?"
-msgstr "Upload map updaten?"
+msgstr "Запамти пријемни директоријум?"
 
 #: lib/activation.php:119
 msgid "Change uploads folder to /assets/ instead of /wp-content/uploads/"
-msgstr "Verander upload map  naar /assets/ instead of /wp-content/uploads/"
+msgstr "Измени пријемни директоријум у /assets/ уместо /wp-content/uploads/"
 
 #: lib/activation.php:124 lib/activation.php:126
 msgid "Create navigation menu?"
-msgstr "Navigatie menu maken?"
+msgstr "Направи навигациони изборник?"
 
 #: lib/activation.php:132
 msgid "Create the Primary Navigation menu and set the location"
-msgstr "Maak een hoofd menu en stel de lokatie in"
+msgstr "Направи Основни навигациони изборник и постави га?"
 
 #: lib/activation.php:137 lib/activation.php:139
 msgid "Add pages to menu?"
-msgstr "Pagina's toevoegen aan menu?"
+msgstr "Додај стране у изборник?"
 
 #: lib/activation.php:145
 msgid "Add all current published pages to the Primary Navigation"
-msgstr "Voeg alle gepubliceerde pagina's toe aan de standaard navigatie"
+msgstr "Додај све објављене стране у Основни навигациони изборник"
 
 #: lib/cleanup.php:382
 msgid "Continued"
-msgstr "Vervolgd"
+msgstr "Наставак"
 
 #: lib/init.php:11
 msgid "Primary Navigation"
-msgstr "Standaard Navigatie"
+msgstr "Основна навигација"
 
 #: lib/utils.php:60
 msgid "Latest Posts"
-msgstr "Laatste berichten"
+msgstr "Најновији чланци"
 
 #: lib/utils.php:69
 msgid "Daily Archives: %s"
-msgstr "Dagelijkse berichten: %s"
+msgstr "Дневне архиве: %s"
 
 #: lib/utils.php:71
 msgid "Monthly Archives: %s"
-msgstr "Maandelijkse berichten: %s"
+msgstr "Месечне архиве: %s"
 
 #: lib/utils.php:73
 msgid "Yearly Archives: %s"
-msgstr "Jaarlijkse berichten: %s"
+msgstr "Годишње архиве: %s"
 
 #: lib/utils.php:75
 msgid "Author Archives: %s"
-msgstr "Auteurs berichten: %s"
+msgstr "Архиве аутора: %s"
 
 #: lib/utils.php:80
 msgid "Search Results for %s"
-msgstr "Zoekresultaten voor %s"
+msgstr "Резултати претраге за %s"
 
 #: lib/utils.php:82
 msgid "Not Found"
-msgstr "Niet gevonden"
+msgstr "Нема резултата"
 
 #: lib/utils.php:94
 msgid "Please make sure your <a href=\"%s\">.htaccess</a> file is writable "
-msgstr "Zorg ervoor dat <a href=\"%s\">.htaccess</a> schrijfbaar is"
+msgstr ""
+"Проверите да ли је дозвољено писање у <a href=\"%s\">.htaccess</a> датотеку"
 
 #: lib/widgets.php:8
 msgid "Primary Sidebar"
-msgstr "Hoofd Sidebar"
+msgstr "Основна бочна трака"
 
 #: lib/widgets.php:17
 msgid "Footer"
-msgstr "Footer"
+msgstr "Футер"
 
 #: lib/widgets.php:45
 msgid "Use this widget to add a vCard"
-msgstr "Gebruik deze widget om een vCard toe te voegen"
+msgstr "Употреби овај виџет за додавање vCard"
 
 #: lib/widgets.php:47
 msgid "Roots: vCard"
-msgstr "Roots: vCard"
+msgstr "Корени: vCard"
 
 #: lib/widgets.php:74
 msgid "vCard"
@@ -172,90 +174,90 @@ msgstr "%1$s"
 
 #: templates/comment.php:5
 msgid "(Edit)"
-msgstr "(Bewerken)"
+msgstr "(измени)"
 
 #: templates/comment.php:9
 msgid "Your comment is awaiting moderation."
-msgstr "Je reactie wacht op goedkeuring."
+msgstr "Коментар чека одобрење."
 
 #: templates/comments.php:8
 msgid "One Response to &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s Responses to &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Један коментар на &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s коментара на &ldquo;%2$s&rdquo;"
 
 #: templates/comments.php:18
 msgid "&larr; Older comments"
-msgstr "&larr; Oudere reacties"
+msgstr "&larr; Старији коментари"
 
 #: templates/comments.php:21
 msgid "Newer comments &rarr;"
-msgstr "Nieuwere reacties &rarr;"
+msgstr "Новији коментари &rarr;"
 
 #: templates/comments.php:29 templates/comments.php:38
 msgid "Comments are closed."
-msgstr "Reageren is niet mogelijk."
+msgstr "Коментарисање затворено."
 
 #: templates/comments.php:45
 msgid "Leave a Reply"
-msgstr "Plaats een reactie"
+msgstr "Остави коментар"
 
 #: templates/comments.php:45
 msgid "Leave a Reply to %s"
-msgstr "Plaats een reactie bij %s"
+msgstr "Остави коментар на %s"
 
 #: templates/comments.php:48
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
-msgstr "Je moet <a href=\"%s\">ingelogd</a> zijn om een reactie te plaatsen."
+msgstr "Мораш бити <a href=\"%s\">пријављен</a> да би сте оставили коментар."
 
 #: templates/comments.php:53
 msgid "Logged in as <a href=\"%s/wp-admin/profile.php\">%s</a>."
-msgstr "Ingelogd als <a href=\"%s/wp-admin/profile.php\">%s</a>."
+msgstr "Пријављен као <a href=\"%s/wp-admin/profile.php\">%s</a>."
 
 #: templates/comments.php:54
 msgid "Log out of this account"
-msgstr "Dit account uitloggen"
+msgstr "Одјави се"
 
 #: templates/comments.php:54
 msgid "Log out &raquo;"
-msgstr "Uitloggen &raquo;"
+msgstr "Одјава &raquo;"
 
 #: templates/comments.php:57
 msgid "Name"
-msgstr "Naam"
+msgstr "Име"
 
 #: templates/comments.php:57 templates/comments.php:59
 msgid " (required)"
-msgstr " (noodzakelijk)"
+msgstr " (обавезно)"
 
 #: templates/comments.php:59
 msgid "Email (will not be published)"
-msgstr "Email adres (zal niet getoond worden)"
+msgstr "емеил адреса (неће бити објављена)"
 
 #: templates/comments.php:61
 msgid "Website"
-msgstr "Website"
+msgstr "Вебсајт"
 
 #: templates/comments.php:64
 msgid "Comment"
-msgstr "Reactie"
+msgstr "Коментар"
 
 #: templates/comments.php:66
 msgid "Submit Comment"
-msgstr "Reactie toevoegen"
+msgstr "Пошаљи коментар"
 
 #: templates/content-single.php:11
 msgid "Pages:"
-msgstr "Pagina's:"
+msgstr "Стране:"
 
 #: templates/entry-meta.php:2
 msgid "By"
-msgstr "Door"
+msgstr "аутор"
 
 #: templates/searchform.php:2
 msgid "Search for:"
-msgstr "Zoeken naar:"
+msgstr "Потрага за:"
 
 #: templates/searchform.php:3 templates/searchform.php:4
 msgid "Search"
-msgstr "Zoeken"
+msgstr "Потрага"

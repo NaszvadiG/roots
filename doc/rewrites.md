@@ -12,11 +12,11 @@ Rewrite:
 3. `/wp-content/themes/themename/assets/img/` to `/assets/img/`
 4. `/wp-content/plugins/` -> `/plugins/`
 
-If HTML5 Boilerplate's `.htaccess` support is enabled in `lib/config.php`, then the `generate_rewrite_rules()` filter is used to automatically add the contents of `lib/h5bp-htaccess` to your `.htaccess` file.
-
 ## Alternative server configurations
 
 ### Nginx
+
+Include these in your Nginx config, before the PHP fastcgi block (`location ~ \.php$`).
 
     location ~ ^/assets/(img|js|css)/(.*)$ {
       try_files $uri $uri/ /wp-content/themes/roots/assets/$1/$2;
